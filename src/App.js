@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import WrestlerCard from './components/WrestlerCard'
+import { useState } from 'react'
+import wrestlersList from './wrestlers'
 
-function App() {
+function App(props) {
+  const [wrestlers, setWrestlers] = useState(wrestlersList)
+
+  const showWrestlers = () => {
+    return wrestlers.map(({name, image}) => {
+      return <WrestlerCard name={name} image={image} />
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App"> 
+      <ol className="wrestlers-list">
+        {showWrestlers()}
+      </ol>
     </div>
   );
 }
